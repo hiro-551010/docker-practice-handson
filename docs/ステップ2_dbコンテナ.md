@@ -108,3 +108,5 @@ Step 1 のコンテナが起動したままだと `8080` が競合する。Step 
 ```bash
 docker stop handson-step1-app
 ```
+
+Step 1 を裏で動かし続けたい場合は、止める代わりに `.env` の `APP_PORT` をずらせば並走できる ([進め方.md](./進め方.md) の「並走モード」参照)。

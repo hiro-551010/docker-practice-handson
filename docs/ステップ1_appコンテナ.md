@@ -139,3 +139,22 @@ docker ps
 ```bash
 docker stop handson-step1-app
 ```
+
+## 裏で動かし続ける場合
+
+ターミナルを閉じても起動したままにしたいときは、`--rm` を外して `-d` (デタッチ) で起動する。並走モードでも使う形。
+
+```bash
+docker run -d --name handson-step1-app \
+  -e APP_MESSAGE="Hello from docker run environment" -e APP_ENV=handson \
+  -p 18080:80 -v "$PWD/src:/var/www/html" handson-step1-app
+```
+
+`-d` で起動した場合の停止と削除:
+
+```bash
+docker stop handson-step1-app
+docker rm handson-step1-app
+```
+
+`--rm` を付けないと停止だけではコンテナが残るので、再度同じ名前で起動するときに「name is already in use」エラーになる。`docker rm` まで実行する。

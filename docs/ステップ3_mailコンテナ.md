@@ -109,8 +109,12 @@ Mail status: mail:1025 is reachable
 docker compose down
 ```
 
-Step 2 のコンテナが起動したままだと `8080` や `3306` が競合する。Step 3 を始める前に Step 2 を止める。
+Step 2 のコンテナが起動したままだと `8080` や `3306` が競合する。Step 3 を始める前に、Step 2 のフォルダで次を実行する。
 
 ```bash
+cd ../step2_app_db
 docker compose down
+cd ../step3_app_db_mail
 ```
+
+Step 2 を裏で動かし続けたい場合は、止める代わりに Step 3 の `.env` 側で `APP_PORT` / `DB_PORT` をずらせば並走できる ([進め方.md](./進め方.md) の「並走モード」参照)。
